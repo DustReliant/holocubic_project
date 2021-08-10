@@ -8,7 +8,7 @@
 #define WEATHER_PAGE_SIZE 2
 
 ESP32Time g_rtc;                              // 用于时间解码
-int clock_page = 0;                           // 时钟桌面的播放记录int clock_page = 0;                           // 时钟桌面的播放记录
+int clock_page = 0;                           // 时钟桌面的播放记录int clock_page = 0;        // 时钟桌面的播放记录
 unsigned long preWeatherMillis = 0;           // 上一回更新天气时的毫秒数
 unsigned long preTimeMillis = 0;              // 上一回从网络更新日期与时间时的毫秒数
 unsigned long weatherUpdataInterval = 900000; // 天气更新的时间间隔

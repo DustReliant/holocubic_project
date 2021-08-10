@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "lvgl.h": "c",
+        "clock_gui.h": "c"
+    }
+}

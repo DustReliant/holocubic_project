@@ -12,6 +12,7 @@
 #include "app/server/server.h"
 #include "app/bilibili_fans/bilibili.h"
 #include "app/weather/weather.h"
+#include "app/clock/clock.h"
 
 /*** Component objects **7*/
 Display screen;
@@ -52,12 +53,13 @@ void setup(){
     config_read("/wifi.txt", &g_cfg);
     tf.listDir("/image", 250);
 
-    app_contorller->app_register(&weather_app);
-    app_contorller->app_register(&picture_app);
-    app_contorller->app_register(&media_app);
+    // app_contorller->app_register(&weather_app);
+    // app_contorller->app_register(&picture_app);
+    // app_contorller->app_register(&media_app);
     app_contorller->app_register(&bilibili_app);
-    app_contorller->app_register(&screen_share_app);
-    app_contorller->app_register(&server_app);
+    // app_contorller->app_register(&clock_app);
+    // app_contorller->app_register(&screen_share_app);
+    // app_contorller->app_register(&server_app);
 
     /*** Read WiFi info in SD-Card, then scan & connect WiFi ***/
     g_network.init(g_cfg.ssid, g_cfg.password);

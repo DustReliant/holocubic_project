@@ -51,6 +51,12 @@ struct Weather
     int temperature;
 };
 
+struct Bilibili
+{
+    int follower;
+};
+
+
 void restCallback(TimerHandle_t xTimer);
 
 class Network

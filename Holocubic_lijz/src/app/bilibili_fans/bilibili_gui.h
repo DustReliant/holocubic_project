@@ -11,9 +11,10 @@ extern "C"
     while (lv_anim_count_running()) \
         lv_task_handler(); //等待动画完成
 
-    void bilibili_gui_init(void);
+    void bilibili_gui_init(long follower);
     void display_bilibili(const char *file_name, lv_scr_load_anim_t anim_type);
     void bilibili_gui_del(void);
+    void display_init();
 
 #ifdef __cplusplus
 } /* extern "C" */
