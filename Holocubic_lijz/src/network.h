@@ -53,6 +53,7 @@ struct Weather
 
 struct Bilibili
 {
+    
     int follower;
 };
 
@@ -68,6 +69,7 @@ public:
     long long m_preLocalTimestamp = 0;         // 上一次的本地机器时间戳
     boolean m_web_start = 0;                   // 标志是否开启web server服务，0为关闭 1为开启
     Weather m_weather;                         // 保存天气状况
+
 
 public:
     Network();
