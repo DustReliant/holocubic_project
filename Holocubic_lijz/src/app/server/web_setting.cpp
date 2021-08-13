@@ -135,7 +135,7 @@ void Setting()
     // config_read("/wifi.txt", &g_cfg);
     char buf[1024];
     sprintf(buf, SETTING, g_cfg.ssid.c_str(), g_cfg.password.c_str(),
-            g_cfg.cityname.c_str(),g_cfg.UID.c_str(), g_cfg.language.c_str(),
+            g_cfg.cityname.c_str(), g_cfg.UID.c_str(), g_cfg.language.c_str(),
             g_cfg.weather_key.c_str());
     webpage = buf;
     Send_HTML(webpage);

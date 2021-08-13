@@ -5,7 +5,10 @@
 
 // #include "img_ico.c"
 // #include "bilibili_ico.c"
+// #include "../../lib/lv_lib_split_jpg/lv_sjpg.h"
 
+// LV_IMG_DECLARE( small_image_sjpg );
+// LV_IMG_DECLARE( wallpaper_jpg );
 
 LV_FONT_DECLARE(myFont);
 
@@ -103,14 +106,20 @@ void bilibili_gui_init(const char* data_card_fans){
 	lv_obj_set_size(label3, 70, 0);
 
     //创建 头像
-//     lv_obj_t *img0 = lv_img_create(bilibili_gui, NULL);
-//     lv_obj_add_style(img0, LV_IMG_PART_MAIN, &style_img0);
-// 	lv_obj_set_pos(img0, 68, 30);
-// 	lv_obj_set_size(img0, 100, 100);
-// 	lv_obj_set_click(img0, true);
-// 	//lv_img_set_src(img0,&app_bilibili);
-// 	lv_img_set_pivot(img0, 24,25);
-// 	lv_img_set_angle(img0, 0);
+    //
+	//创建一个IMG对象并加载SD卡中的jpg图片解码显示///
+	//
+	lv_obj_t * objpg =  lv_img_create(bilibili_gui, NULL);				// 创建一个IMG对象 
+	lv_img_set_src(objpg, "S:/image/x.bin");					// 加载SD卡中的JPG图片
+	lv_obj_align(objpg, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0);			// 重新设置对齐
+    // lv_obj_t *img0 = lv_img_create(bilibili_gui, NULL);
+    // lv_obj_add_style(img0, LV_IMG_PART_MAIN, &style_img0);
+    // lv_obj_set_pos(img0, 68, 30);
+    // lv_obj_set_size(img0, 100, 100);
+    // lv_obj_set_click(img0, true);
+    // //lv_img_set_src(img0,&app_bilibili);
+    // lv_img_set_pivot(img0, 24,25);
+    // lv_img_set_angle(img0, 0);
 }
 
 

@@ -31,7 +31,7 @@ void bilibili_init(void){
         return;
     }
     //URL请求地址
-    String url = "/x/web-interface/card?mid=" + UID + "&jsonp=jsonp"; // B站粉丝数 方案1 请求头
+    String url = "/x/web-interface/card?mid=" + g_cfg.UID + "&jsonp=jsonp"; // B站粉丝数 方案1 请求头
     //String url = "/x/relation/stat?vmid=" + g_cfg.UID + "&jsonp=jsonp"; // B站粉丝数 方案2 请求头
 
     //发送网络请求
