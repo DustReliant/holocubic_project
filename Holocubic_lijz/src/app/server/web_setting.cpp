@@ -52,6 +52,7 @@ String file_size(int bytes)
                 "<label class=\"input\"><span>WiFi SSID</span><input type=\"text\"name=\"ssid\"value=\"%s\"></label>"                  \
                 "<label class=\"input\"><span>WiFi Passwd</span><input type=\"text\"name=\"pass\"value=\"%s\"></label>"                \
                 "<label class=\"input\"><span>City Name</span><input type=\"text\"name=\"cityname\"value=\"%s\"></label>"              \
+                "<label class=\"input\"><span>Bilibili UID</span><input type=\"text\"name=\"UID\"value=\"%s\"></label>"              \
                 "<label class=\"input\"><span>City Language(zh-Hans)</span><input type=\"text\"name=\"language\"value=\"%s\"></label>" \
                 "<label class=\"input\"><span>Weather Key</span><input type=\"text\"name=\"weatherKey\"value=\"%s\"></label>"          \
                 "</label><input class=\"btn\" type=\"submit\" name=\"submit\" value=\"Submie\"></form>"
@@ -134,7 +135,7 @@ void Setting()
     // config_read("/wifi.txt", &g_cfg);
     char buf[1024];
     sprintf(buf, SETTING, g_cfg.ssid.c_str(), g_cfg.password.c_str(),
-            g_cfg.cityname.c_str(), g_cfg.language.c_str(),
+            g_cfg.cityname.c_str(),g_cfg.UID.c_str(), g_cfg.language.c_str(),
             g_cfg.weather_key.c_str());
     webpage = buf;
     Send_HTML(webpage);
@@ -149,6 +150,7 @@ void save_config(void)
     g_cfg.ssid = server.arg("ssid");
     g_cfg.password = server.arg("pass");
     g_cfg.cityname = server.arg("cityname");
+    g_cfg.UID = server.arg("UID");
     g_cfg.language = server.arg("language");
     g_cfg.weather_key = server.arg("weatherKey");
     config_save("/wifi.txt", &g_cfg); // 更新配置文件

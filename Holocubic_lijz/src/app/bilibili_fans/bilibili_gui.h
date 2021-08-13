@@ -14,7 +14,7 @@ extern "C"
     void bilibili_gui_init(const char* data_card_fans);
     void display_bilibili(const char *file_name, lv_scr_load_anim_t anim_type);
     void bilibili_gui_del(void);
-    void display_init();
+    void display_init(void);
 
 #ifdef __cplusplus
 } /* extern "C" */

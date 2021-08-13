@@ -6,13 +6,13 @@
 
 #include <ArduinoJson.h>
 
-String UID = "344470052";
+//String UID = "344470052";
 //String Url = "http://api.bilibili.com/x/relation/stat?vmid=" + UID;   // 粉丝数
 //String Url = "http://api.bilibili.com/x/web-interface/card?mid=" + UID;   // 粉丝数
 const char* host = "api.bilibili.com";
 
-long follower = 0;   // 粉丝数
-long face = 0; //
+long follower = NULL;   // 粉丝数
+long face = NULL; //
 String fans="";
 /**************************修改部分************************************************/
 
@@ -31,8 +31,8 @@ void bilibili_init(void){
         return;
     }
     //URL请求地址
-    //String url = "/x/web-interface/card?mid=" + UID + "&jsonp=jsonp"; // B站粉丝数 方案1 请求头
-    String url = "/x/relation/stat?vmid=" + UID + "&jsonp=jsonp"; // B站粉丝数 方案2 请求头
+    String url = "/x/web-interface/card?mid=" + UID + "&jsonp=jsonp"; // B站粉丝数 方案1 请求头
+    //String url = "/x/relation/stat?vmid=" + g_cfg.UID + "&jsonp=jsonp"; // B站粉丝数 方案2 请求头
 
     //发送网络请求
     client.print(String("GET ") + url + " HTTP/1.1\r\n" +
@@ -184,16 +184,17 @@ void bilibili_init(void){
     StaticJsonDocument<256> doc;
     deserializeJson(doc, jsonAnswer);
     JsonObject data = doc["data"];
-    //JsonObject data_card = data["card"];
-    face = data["follower"]; // 
-    //follower = data_card["fans"]; // 
+    JsonObject data_card = data["card"];
+    //face = data["follower"]; // 
+    face = data_card["fans"]; // 
     follower = data["follower"];
+    
     Serial.println("face: ");
     Serial.println(face);
     
     Serial.println("粉丝数（follower）: ");
     Serial.println(follower);
-
+    
     char data_card_fans[10] = {0};
     sprintf(data_card_fans, "%ld", follower);
     // bilibili_gui_init(data_card_fans);   //

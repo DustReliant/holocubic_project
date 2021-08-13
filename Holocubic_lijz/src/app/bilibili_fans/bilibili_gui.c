@@ -3,18 +3,23 @@
 #include "lv_port_indev.h"
 #include "lvgl.h"
 
+// #include "img_ico.c"
+// #include "bilibili_ico.c"
 
-LV_FONT_DECLARE(myFont)
+
+LV_FONT_DECLARE(myFont);
+
 
 // lv_obj_t *clock_text = NULL;
 lv_obj_t *bilibili_gui = NULL;
 lv_obj_t *follower_label = NULL;
 
 static lv_style_t default_style;
-static lv_style_t label_style;
-static lv_style_t label1_style;
-static lv_style_t label2_style;
-static lv_style_t label3_style;
+static lv_style_t label_style;        //用户ID样式
+static lv_style_t label1_style;       //昵称样式
+static lv_style_t label2_style;       //粉丝数样式
+static lv_style_t label3_style;       //粉丝数目（number）值样式
+static lv_style_t style_img0;         //头像样式
 
 
 void bilibili_gui_init(const char* data_card_fans){
@@ -49,10 +54,13 @@ void bilibili_gui_init(const char* data_card_fans){
     //“number”样式
     lv_style_init(&label3_style);
     lv_style_set_text_color(&label3_style, LV_STATE_DEFAULT, lv_color_make(0xff, 0x00, 0x00));
-	lv_style_set_text_font(&label3_style, LV_STATE_DEFAULT, &lv_font_montserrat_20);
+	lv_style_set_text_font(&label3_style, LV_STATE_DEFAULT, &lv_font_montserrat_30);
 	lv_style_set_text_letter_space(&label3_style, LV_STATE_DEFAULT, 2);
-
-
+    //头像样式
+    lv_style_init(&style_img0);
+    lv_style_set_image_recolor(&style_img0, LV_STATE_DEFAULT, lv_color_make(0x52, 0x19, 0x19));
+	lv_style_set_image_recolor_opa(&style_img0, LV_STATE_DEFAULT, 0);
+	lv_style_set_image_opa(&style_img0, LV_STATE_DEFAULT, 232);
 
     // 创建标签
     lv_obj_t *label = lv_label_create(bilibili_gui, NULL);
@@ -71,6 +79,7 @@ void bilibili_gui_init(const char* data_card_fans){
 	lv_obj_set_pos(label1, 67, 169);
 	lv_obj_set_size(label1, 200, 0);
     lv_label_set_text(label1, "溜马小哥");
+    //lv_label_set_text_fmt(label1, "%s", uid);//参数
 	lv_label_set_long_mode(label1, LV_LABEL_LONG_BREAK);
 	lv_label_set_align(label1, LV_LABEL_ALIGN_CENTER);
     
@@ -92,6 +101,16 @@ void bilibili_gui_init(const char* data_card_fans){
     lv_obj_add_style(label3, LV_LABEL_PART_MAIN, &label3_style);
 	lv_obj_set_pos(label3, 67, 209);
 	lv_obj_set_size(label3, 70, 0);
+
+    //创建 头像
+//     lv_obj_t *img0 = lv_img_create(bilibili_gui, NULL);
+//     lv_obj_add_style(img0, LV_IMG_PART_MAIN, &style_img0);
+// 	lv_obj_set_pos(img0, 68, 30);
+// 	lv_obj_set_size(img0, 100, 100);
+// 	lv_obj_set_click(img0, true);
+// 	//lv_img_set_src(img0,&app_bilibili);
+// 	lv_img_set_pivot(img0, 24,25);
+// 	lv_img_set_angle(img0, 0);
 }
 
 
@@ -111,16 +130,18 @@ void bilibili_gui_start(lv_scr_load_anim_t anim_type)
 
 void bilibili_gui_del(void) 
 {
+    // lv_obj_t *act_obj = lv_scr_act(); // 获取当前活动页
     if (NULL != bilibili_gui)
     {
         lv_obj_clean(bilibili_gui);
         bilibili_gui = NULL;
     }
+    //lv_obj_clean(act_obj); // 清空此前页面
 }
 
 // void display_init()
 // {
-//     lv_obj_t *act_obj = lv_scr_act();
+//      lv_obj_t *act_obj = lv_scr_act();
 //     if (act_obj == bilibili_gui)
 //     {
 //         return;

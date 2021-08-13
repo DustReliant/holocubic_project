@@ -23,17 +23,23 @@ void clock_gui_init()
     lv_style_set_bg_color(&default_style, LV_STATE_PRESSED, LV_COLOR_GRAY);
     lv_style_set_bg_color(&default_style, LV_STATE_FOCUSED, LV_COLOR_BLACK);
     lv_style_set_bg_color(&default_style, LV_STATE_FOCUSED | LV_STATE_PRESSED, lv_color_hex(0xf88));
-    // 创建标签
-    lv_obj_t *label = lv_label_create(clock_gui, NULL);
-    lv_label_set_text(label, "hello world ! 依尘");
-    lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, -10); // 居中对齐
-    lv_obj_set_size(label, 150, 150);
-    //lv_obj_add_style(label, LV_LABLE_PART_MAIN, &lable_style);
+
     //label标签样式
     lv_style_init(&label_style);
     lv_style_set_text_opa(&label_style, LV_STATE_DEFAULT, LV_OPA_COVER);
     lv_style_set_text_color(&label_style, LV_STATE_DEFAULT, LV_COLOR_WHITE);
-    lv_style_set_text_font(&label_style, LV_STATE_DEFAULT, &myFont);
+    lv_style_set_text_font(&label_style, LV_STATE_DEFAULT, &lv_font_montserrat_40);
+
+
+    // 创建标签
+    lv_obj_t *label = lv_label_create(clock_gui, NULL);
+    lv_obj_add_style(label, LV_LABEL_PART_MAIN, &label_style);
+    lv_label_set_text(label, "hello world !");
+    lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, -10); // 居中对齐
+    lv_obj_set_size(label, 150, 150);
+    // lv_obj_set_pos(label, 67, 169);
+	lv_label_set_long_mode(label, LV_LABEL_LONG_BREAK);
+	lv_label_set_align(label, LV_LABEL_ALIGN_CENTER);
     
     
     //创建标签
@@ -56,10 +62,10 @@ void clock_gui_exit()
 
 void display_init()
 {
-    lv_obj_t *act_obj = lv_scr_act();
+    lv_obj_t *act_obj = lv_scr_act(); // 获取当前活动页
     if (act_obj == clock_gui)
     {
         return;
     }
-    lv_obj_clean(act_obj);
+    lv_obj_clean(act_obj); //清空此前页面
 }

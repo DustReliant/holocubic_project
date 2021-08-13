@@ -57,7 +57,7 @@ void setup(){
     // app_contorller->app_register(&picture_app);
     // app_contorller->app_register(&media_app);
     app_contorller->app_register(&bilibili_app);
-    // app_contorller->app_register(&clock_app);
+    app_contorller->app_register(&clock_app);
     // app_contorller->app_register(&screen_share_app);
     // app_contorller->app_register(&server_app);
 
